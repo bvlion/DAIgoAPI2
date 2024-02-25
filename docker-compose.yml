@@ -16,3 +16,9 @@ services:
         volumes:
             - .:/var/www
             - logs:/var/www/logs
+
+    composer:
+        image: composer:2.1
+        volumes:
+          - .:/app
+        working_dir: /app

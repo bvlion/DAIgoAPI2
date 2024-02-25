@@ -2,26 +2,24 @@
 
 declare(strict_types=1);
 
-use App\Application\Actions\User\ListUsersAction;
-use App\Application\Actions\User\ViewUserAction;
+use App\Application\Actions\Markdown\AppMarkdownAction;
+use App\Application\Actions\Markdown\ViewPrivacyPolicyMarkdownAction;
+use App\Application\Actions\Markdown\ViewTermsOfUseMarkdownAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
-    $app->options('/{routes:.*}', function (Request $request, Response $response) {
-        // CORS Pre-Flight OPTIONS Request Handler
+    $app->get('/health', function (Request $request, Response $response) {
+        $response->getBody()->write(json_encode(['status' => 'ok']));
         return $response;
     });
 
-    $app->get('/', function (Request $request, Response $response) {
-        $response->getBody()->write('Hello world!');
-        return $response;
-    });
+    $app->get('/app/rules', AppMarkdownAction::class);
 
-    $app->group('/users', function (Group $group) {
-        $group->get('', ListUsersAction::class);
-        $group->get('/{id}', ViewUserAction::class);
+    $app->group('/view', function (Group $group) {
+        $group->get('/privacy_policy', ViewPrivacyPolicyMarkdownAction::class);
+        $group->get('/terms_of_use', ViewTermsOfUseMarkdownAction::class);
     });
 };
