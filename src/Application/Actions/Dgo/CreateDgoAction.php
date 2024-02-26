@@ -6,8 +6,6 @@ namespace App\Application\Actions\Dgo;
 
 use Psr\Http\Message\ResponseInterface as Response;
 
-use function DI\value;
-
 class CreateDgoAction extends DgoAction
 {
     /**
@@ -58,7 +56,7 @@ class CreateDgoAction extends DgoAction
                     if ($type[1] === "記号") continue;
                     if ($arr[2] === "助動詞語幹") continue;
                     if (count($arr) < 8) {
-                        if (isset($type) && $type[1] === "名詞") {
+                        if (isset($type[1]) && $type[1] === "名詞") {
                             $daigo .= $type[0];
                         }
                         continue;
