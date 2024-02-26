@@ -8,6 +8,7 @@ use App\Application\Actions\Markdown\TextTermsOfUseMarkdownAction;
 use App\Application\Actions\Markdown\ViewPrivacyPolicyMarkdownAction;
 use App\Application\Actions\Markdown\ViewTermsOfUseMarkdownAction;
 use App\Application\Actions\Dgo\CreateDgoAction;
+use App\Application\Actions\Dgo\UpsertDgoAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
@@ -37,4 +38,5 @@ return function (App $app) {
     })->add(BearerAuthMiddleware::class);
     
     $app->get('/get-dai-go', CreateDgoAction::class)->add(BearerAuthMiddleware::class);
+    $app->post('/upsert-dai-go', UpsertDgoAction::class)->add(BearerAuthMiddleware::class);
 };
