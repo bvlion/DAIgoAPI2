@@ -33,7 +33,7 @@ return function (App $app) {
 
     // AuthenticatedAPI
     $app->get('/get-samples', function (Request $request, Response $response) {
-        $response->getBody()->write(json_encode(explode(",", file_get_contents($_ENV['ROOT_DIR'] . '/resources/samples.txt')), JSON_UNESCAPED_UNICODE));
+        $response->getBody()->write(json_encode(explode(',', file_get_contents($_ENV['ROOT_DIR'] . '/resources/samples.txt')), JSON_UNESCAPED_UNICODE));
         return $response->withHeader('Content-Type', 'application/json');
     })->add(BearerAuthMiddleware::class);
     

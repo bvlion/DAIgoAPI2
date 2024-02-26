@@ -22,16 +22,15 @@ class AppMarkdownAction extends MarkdownAction
         if ($isPrivacyPolicy === 'true') {
             $markdown = file_get_contents($_ENV['ROOT_DIR'] . '/resources/privacy_policy.md');
         }
-        
         $this->response->getBody()->write(
             str_replace(
-                "%backColor%",
+                '%backColor%',
                 $backColor,
                 str_replace(
-                    "%textColor%",
+                    '%textColor%',
                     $textColor,
                     str_replace(
-                        "%markdown%",
+                        '%markdown%',
                         Markdown::defaultTransform($markdown),
                         file_get_contents($_ENV['ROOT_DIR'] . '/resources/rules_app.html')
                     )

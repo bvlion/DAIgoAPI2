@@ -9,7 +9,6 @@ use Psr\Log\LoggerInterface;
 
 abstract class MarkdownAction extends Action
 {
-
     public function __construct(LoggerInterface $logger)
     {
         parent::__construct($logger);

@@ -17,10 +17,10 @@ class ViewTermsOfUseMarkdownAction extends MarkdownAction
         $termsOfUse = file_get_contents($_ENV['ROOT_DIR'] . '/resources/terms_of_use.md');
         $this->response->getBody()->write(
             str_replace(
-                "%title%",
-                "利用規約",
+                '%title%',
+                '利用規約',
                 str_replace(
-                    "%markdown%",
+                    '%markdown%',
                     Markdown::defaultTransform($termsOfUse),
                     file_get_contents($_ENV['ROOT_DIR'] . '/resources/rules.html')
                 )

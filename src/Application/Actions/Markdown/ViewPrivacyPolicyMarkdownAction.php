@@ -17,10 +17,10 @@ class ViewPrivacyPolicyMarkdownAction extends MarkdownAction
         $privacyPolicy = file_get_contents($_ENV['ROOT_DIR'] . '/resources/privacy_policy.md');
         $this->response->getBody()->write(
             str_replace(
-                "%title%",
-                "プライバシーポリシー",
+                '%title%',
+                'プライバシーポリシー',
                 str_replace(
-                    "%markdown%",
+                    '%markdown%',
                     Markdown::defaultTransform($privacyPolicy),
                     file_get_contents($_ENV['ROOT_DIR'] . '/resources/rules.html')
                 )
