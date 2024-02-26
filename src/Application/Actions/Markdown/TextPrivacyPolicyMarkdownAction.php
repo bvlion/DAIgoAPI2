@@ -14,7 +14,7 @@ class TextPrivacyPolicyMarkdownAction extends MarkdownAction
      */
     protected function action(): Response
     {
-        $privacyPolicy = file_get_contents($_ENV['ROOT_DIR'] . '/resources/privacy_policy.md');
+        $privacyPolicy = file_get_contents($_ENV['RESOURCES_DIR'] . 'privacy_policy.md');
         $this->response->getBody()->write(
             json_encode(['text' => Markdown::defaultTransform($privacyPolicy)], JSON_UNESCAPED_UNICODE)
         );

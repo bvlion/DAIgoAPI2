@@ -19,7 +19,7 @@ class UpsertDgoAction extends DgoAction
             return $this->response->withStatus(400);
         }
 
-        $wordList = explode("\n", file_get_contents($_ENV['ROOT_DIR'] . '/resources/words.txt'));
+        $wordList = explode("\n", file_get_contents($_ENV['RESOURCES_DIR'] . 'words.txt'));
         $words = [];
         foreach ($wordList as $word) {
             $text = explode('=', $word);
@@ -31,7 +31,7 @@ class UpsertDgoAction extends DgoAction
             $newWordList .= $key . '=' . $value . "\n";
         }
         file_put_contents(
-            $_ENV['ROOT_DIR'] . '/resources/words.txt',
+            $_ENV['RESOURCES_DIR'] . 'words.txt',
             mb_substr($newWordList, 0, mb_strlen($newWordList) - 1)
         );
 

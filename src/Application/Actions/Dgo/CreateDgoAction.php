@@ -25,7 +25,7 @@ class CreateDgoAction extends DgoAction
 
         $this->logger->info('target: ' . $target);
 
-        $wordList = explode("\n", file_get_contents($_ENV['ROOT_DIR'] . '/resources/words.txt'));
+        $wordList = explode("\n", file_get_contents($_ENV['RESOURCES_DIR'] . 'words.txt'));
         $words = [];
         foreach ($wordList as $word) {
             $text = explode('=', $word);
@@ -37,7 +37,7 @@ class CreateDgoAction extends DgoAction
             return $this->response;
         }
 
-        $notExistList = explode("\n", file_get_contents($_ENV['ROOT_DIR'] . '/resources/notExists.txt'));
+        $notExistList = explode("\n", file_get_contents($_ENV['RESOURCES_DIR'] . 'notExists.txt'));
         foreach ($notExistList as $notExist) {
             $text = explode('=', $notExist);
             $target = str_replace($text[0], $text[1], $target);

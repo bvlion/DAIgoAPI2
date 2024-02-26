@@ -18,9 +18,9 @@ class AppMarkdownAction extends MarkdownAction
         $backColor = $this->request->getQueryParams()['backColor'];
         $isPrivacyPolicy = $this->request->getQueryParams()['isPrivacyPolicy'];
 
-        $markdown = file_get_contents($_ENV['ROOT_DIR'] . '/resources/terms_of_use.md');
+        $markdown = file_get_contents($_ENV['RESOURCES_DIR'] . 'terms_of_use.md');
         if ($isPrivacyPolicy === 'true') {
-            $markdown = file_get_contents($_ENV['ROOT_DIR'] . '/resources/privacy_policy.md');
+            $markdown = file_get_contents($_ENV['RESOURCES_DIR'] . 'privacy_policy.md');
         }
         $this->response->getBody()->write(
             str_replace(
@@ -32,7 +32,7 @@ class AppMarkdownAction extends MarkdownAction
                     str_replace(
                         '%markdown%',
                         Markdown::defaultTransform($markdown),
-                        file_get_contents($_ENV['ROOT_DIR'] . '/resources/rules_app.html')
+                        file_get_contents($_ENV['RESOURCES_DIR'] . 'rules_app.html')
                     )
                 )
             )

@@ -14,7 +14,7 @@ class TextTermsOfUseMarkdownAction extends MarkdownAction
      */
     protected function action(): Response
     {
-        $termsOfUse = file_get_contents($_ENV['ROOT_DIR'] . '/resources/terms_of_use.md');
+        $termsOfUse = file_get_contents($_ENV['RESOURCES_DIR'] . 'terms_of_use.md');
         $this->response->getBody()->write(
             json_encode(['text' => Markdown::defaultTransform($termsOfUse)], JSON_UNESCAPED_UNICODE)
         );
