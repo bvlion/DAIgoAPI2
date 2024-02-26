@@ -6,16 +6,16 @@ volumes:
 
 services:
     slim:
-        image: php:8-alpine
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
-        environment:
-            docker: "true"
+        container_name: slim
+        build: ./docker
         ports:
-            - "8080:8080"
+          - 8000:80
+        tty: true
+        stdin_open: true
         volumes:
-            - .:/var/www
-            - logs:/var/www/logs
+            - ./:/var/www/html
+            - ./docker/php.ini:/usr/local/etc/php/php.ini
+            - ./logs:/var/log/apache2
 
     composer:
         image: composer:2.1

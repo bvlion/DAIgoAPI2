@@ -14,7 +14,6 @@ class AppMarkdownAction extends MarkdownAction
      */
     protected function action(): Response
     {
-        var_dump($this->request->getQueryParams());
         $textColor = $this->request->getQueryParams()['textColor'];
         $backColor = $this->request->getQueryParams()['backColor'];
         $isPrivacyPolicy = $this->request->getQueryParams()['isPrivacyPolicy'];
