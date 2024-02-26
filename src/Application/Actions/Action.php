@@ -38,10 +38,6 @@ abstract class Action
         return $this->action();
     }
 
-    /**
-     * @throws DomainRecordNotFoundException
-     * @throws HttpBadRequestException
-     */
     abstract protected function action(): Response;
 
     /**

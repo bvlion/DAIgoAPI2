@@ -25,7 +25,7 @@ class CreateDgoAction extends DgoAction
 
         $this->logger->info('target: ' . $target);
 
-        $wordList = explode('\n', file_get_contents($_ENV['ROOT_DIR'] . '/resources/words.txt'));
+        $wordList = explode("\n", file_get_contents($_ENV['ROOT_DIR'] . '/resources/words.txt'));
         $words = [];
         foreach ($wordList as $word) {
             $text = explode('=', $word);
@@ -37,7 +37,7 @@ class CreateDgoAction extends DgoAction
             return $this->response;
         }
 
-        $notExistList = explode('\n', file_get_contents($_ENV['ROOT_DIR'] . '/resources/notExists.txt'));
+        $notExistList = explode("\n", file_get_contents($_ENV['ROOT_DIR'] . '/resources/notExists.txt'));
         foreach ($notExistList as $notExist) {
             $text = explode('=', $notExist);
             $target = str_replace($text[0], $text[1], $target);
@@ -52,8 +52,8 @@ class CreateDgoAction extends DgoAction
                 if (count($arr) < 4) {
                     continue;
                 }
-                $type = explode('\t', $arr[0]);
-                if (in_array($type[1], ['助詞', '記号', '助動詞'], true)) {
+                $type = explode("\t", $arr[0]);
+                if (isset($type[1]) && in_array($type[1], ['助詞', '記号', '助動詞'], true)) {
                     continue;
                 }
                 if ($arr[2] === '助動詞語幹') {
