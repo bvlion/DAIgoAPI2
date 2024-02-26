@@ -82,31 +82,3 @@ samples | 努力大事 | List
     ]
 }
 ```
-
-## post /update-samples
-
-Update the sample D◯I 語 words
-
-### request
-
-Content | Parameter | Description
-:--|:--|:--
-
-```
-http://127.0.0.1:8080/update-samples
-```
-
-### response
-
-Content | Parameter | Description
-:--|:--|:--
-samples | 努力大事 | List
-
-```
-{
-    "samples": [
-        "努力大事",
-        "大好物"
-    ]
-}
-```
