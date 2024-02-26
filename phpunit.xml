@@ -24,4 +24,9 @@
             <directory suffix=".php">./src/</directory>
         </whitelist>
     </filter>
+    <php>
+        <env name="RESOURCES_DIR" value="testFile/"/>
+        <env name="BEARER_TOKEN" value="test_test_test"/>
+        <env name="MECAB" value="/usr/bin/mecab"/>
+    </php>
 </phpunit>
