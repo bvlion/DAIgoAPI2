@@ -14,6 +14,14 @@ class AppMarkdownAction extends MarkdownAction
      */
     protected function action(): Response
     {
+        if (
+            !isset($this->request->getQueryParams()['textColor']) ||
+            !isset($this->request->getQueryParams()['backColor']) ||
+            !isset($this->request->getQueryParams()['isPrivacyPolicy'])
+        ) {
+            $this->response->getBody()->write('textColor, backColor, isPrivacyPolicy required');
+            return $this->response->withStatus(400);
+        }
         $textColor = $this->request->getQueryParams()['textColor'];
         $backColor = $this->request->getQueryParams()['backColor'];
         $isPrivacyPolicy = $this->request->getQueryParams()['isPrivacyPolicy'];
