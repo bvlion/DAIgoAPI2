@@ -35,8 +35,7 @@ class UpsertDgoAction extends DgoAction
             mb_substr($newWordList, 0, mb_strlen($newWordList) - 1)
         );
 
-        // $this->response->getBody()->write(json_encode(['save' => 'success'], JSON_UNESCAPED_UNICODE));
-        $this->response->getBody()->write(json_encode(['save' => $posts], JSON_UNESCAPED_UNICODE));
+        $this->response->getBody()->write(json_encode(['save' => 'success'], JSON_UNESCAPED_UNICODE));
         return $this->response;
     }
 }
