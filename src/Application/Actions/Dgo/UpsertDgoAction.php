@@ -13,7 +13,7 @@ class UpsertDgoAction extends DgoAction
      */
     protected function action(): Response
     {
-        $posts = $this->request->getParsedBody();
+        $posts = $this->getFormData();
         if (!isset($posts['word']) || !isset($posts['dai_go']) || empty($posts['word']) || empty($posts['dai_go'])) {
             $this->response->getBody()->write(json_encode(['save' => 'parameter is empty'], JSON_UNESCAPED_UNICODE));
             return $this->response->withStatus(400);

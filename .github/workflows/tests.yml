@@ -25,9 +25,29 @@ jobs:
               with:
                   php-version: ${{ matrix.php }}
                   coverage: xdebug
+            
+            - name: Set up MeCab
+              run: |
+                sudo apt-get update
+                sudo apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
 
-            - name: Install dependencies with Composer
-              uses: ramsey/composer-install@v2
+            - name: Check MeCab
+              run: |
+                mecab --version
+                which mecab
+
+            - name: cache vendor
+              id: cache
+              uses: actions/cache@v4
+              with:
+                path: ./vendor
+                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                restore-keys: |
+                  ${{ runner.os }}-composer-
+
+            - name: composer install
+              if: steps.cache.outputs.cache-hit != 'true'
+              run: docker-compose up composer
 
             - name: Coding standards
               if: matrix.analysis

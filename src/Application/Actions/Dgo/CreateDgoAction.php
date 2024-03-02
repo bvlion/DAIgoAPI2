@@ -144,6 +144,7 @@ class CreateDgoAction extends DgoAction
             case 'ヌ':
             case 'ネ':
             case 'ノ':
+            case 'ン':
                 return 'N';
             case 'ハ':
             case 'ヒ':

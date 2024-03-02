@@ -18,6 +18,11 @@ class TextPrivacyPolicyMarkdownAction extends MarkdownAction
         $this->response->getBody()->write(
             json_encode(['text' => Markdown::defaultTransform($privacyPolicy)], JSON_UNESCAPED_UNICODE)
         );
-        return $this->response->withHeader('Content-Type', 'application/json');
+        return $this->response;
+    }
+
+    protected function contentTypeIsJson()
+    {
+        return true;
     }
 }

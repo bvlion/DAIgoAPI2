@@ -12,18 +12,22 @@ API 4 D◯I 語 app on PHP
 
 ### Install
 
-- wip
+```
+docker compose up composer
+```
 
 ### Execution
 
 ```
-wip
+docker compose up slim -d
 ```
 
 ### Test
 
 ```
-wip
+docker compose exec slim vendor/bin/phpcs
+docker compose exec slim vendor/bin/phpstan
+docker compose exec slim vendor/bin/phpunit
 ```
 
 ## EndPoint
