@@ -35,7 +35,12 @@ abstract class Action
         $this->response = $response;
         $this->args = $args;
 
-        return $this->action();
+        $this->auth();
+        if ($this->contentTypeIsJson()) {
+            return $this->action()->withHeader('Content-Type', 'application/json');
+        } else {
+            return $this->action()->withHeader('Content-Type', 'text/html');
+        }
     }
 
     abstract protected function action(): Response;
@@ -48,36 +53,12 @@ abstract class Action
         return $this->request->getParsedBody();
     }
 
-    /**
-     * @return mixed
-     * @throws HttpBadRequestException
-     */
-    protected function resolveArg(string $name)
+    protected function auth()
     {
-        if (!isset($this->args[$name])) {
-            throw new HttpBadRequestException($this->request, "Could not resolve argument `{$name}`.");
-        }
-
-        return $this->args[$name];
     }
 
-    /**
-     * @param array|object|null $data
-     */
-    protected function respondWithData($data = null, int $statusCode = 200): Response
+    protected function contentTypeIsJson()
     {
-        $payload = new ActionPayload($statusCode, $data);
-
-        return $this->respond($payload);
-    }
-
-    protected function respond(ActionPayload $payload): Response
-    {
-        $json = json_encode($payload, JSON_PRETTY_PRINT);
-        $this->response->getBody()->write($json);
-
-        return $this->response
-                    ->withHeader('Content-Type', 'application/json')
-                    ->withStatus($payload->getStatusCode());
+        return false;
     }
 }

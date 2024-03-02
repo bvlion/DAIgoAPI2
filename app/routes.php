@@ -8,18 +8,18 @@ use App\Application\Actions\Markdown\TextTermsOfUseMarkdownAction;
 use App\Application\Actions\Markdown\ViewPrivacyPolicyMarkdownAction;
 use App\Application\Actions\Markdown\ViewTermsOfUseMarkdownAction;
 use App\Application\Actions\Dgo\CreateDgoAction;
+use App\Application\Actions\Dgo\SamplesDgoAction;
 use App\Application\Actions\Dgo\UpsertDgoAction;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
-use App\Application\Middleware\BearerAuthMiddleware;
 
 return function (App $app) {
     // UnauthenticatedAPI
     $app->get('/health', function (Request $request, Response $response) {
         $response->getBody()->write(json_encode(['status' => 'ok']));
-        return $response;
+        return $response->withHeader('Content-Type', 'application/json');
     });
     $app->get('/privacy_policy', TextPrivacyPolicyMarkdownAction::class);
     $app->get('/terms_of_use', TextTermsOfUseMarkdownAction::class);
@@ -32,11 +32,7 @@ return function (App $app) {
     });
 
     // AuthenticatedAPI
-    $app->get('/get-samples', function (Request $request, Response $response) {
-        $response->getBody()->write(json_encode(explode(',', file_get_contents($_ENV['RESOURCES_DIR'] . 'samples.txt')), JSON_UNESCAPED_UNICODE));
-        return $response->withHeader('Content-Type', 'application/json');
-    })->add(BearerAuthMiddleware::class);
-    
-    $app->get('/get-dai-go', CreateDgoAction::class)->add(BearerAuthMiddleware::class);
-    $app->post('/upsert-dai-go', UpsertDgoAction::class)->add(BearerAuthMiddleware::class);
+    $app->get('/get-samples', SamplesDgoAction::class);
+    $app->get('/get-dai-go', CreateDgoAction::class);
+    $app->post('/upsert-dai-go', UpsertDgoAction::class);
 };
