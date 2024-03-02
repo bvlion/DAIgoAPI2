@@ -18,7 +18,8 @@ services:
             - ./logs:/var/log/apache2
 
     composer:
-        image: composer:2.1
+        image: composer
         volumes:
           - .:/app
         working_dir: /app
+        command: composer install
