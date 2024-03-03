@@ -1,6 +1,19 @@
 name: Tests
 
-on: [push, pull_request]
+on:
+  pull_request:
+    paths:
+      - .github/workflows/tests.yml
+      - app/**
+      - public/**
+      - src/**
+      - testFile/**
+      - tests/**
+      - .coveralls.yml
+      - composer.*
+      - phpcs.xml
+      - phpstan.neon.dist
+      - phpunit.xml
 
 jobs:
     tests:
