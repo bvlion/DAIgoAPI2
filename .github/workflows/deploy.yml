@@ -23,10 +23,10 @@ jobs:
         run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && rm -rf app public resources src vendor composer.*"
 
       - name: upload files
-        run: scp -p -P '${{ secrets.SSH_PORT }} -r app public resources src composer.* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DIR }}/.
+        run: scp -p -P ${{ secrets.SSH_PORT }} -r app public resources src composer.* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DIR }}/.
 
       - name: install composer
-        run: ssh -p '${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && php8.1 ~/bin/composer install"
+        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && php8.1 ~/bin/composer install"
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
