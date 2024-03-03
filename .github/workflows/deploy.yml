@@ -20,7 +20,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: delete server files
-        run: ssh -p '${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && rm -rf app public resources src vendor composer.*"
+        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && rm -rf app public resources src vendor composer.*"
 
       - name: upload files
         run: scp -p -P '${{ secrets.SSH_PORT }} -r app public resources src composer.* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DIR }}/.
