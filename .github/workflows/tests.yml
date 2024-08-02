@@ -58,7 +58,7 @@ jobs:
 
             - name: composer install
               if: steps.cache.outputs.cache-hit != 'true'
-              run: docker-compose up composer
+              run: docker compose up composer
 
             - name: Coding standards
               run: vendor/bin/phpcs
