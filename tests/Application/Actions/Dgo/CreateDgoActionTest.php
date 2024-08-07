@@ -92,12 +92,34 @@ class CreateDgoActionTest extends TestCase
         $request = $this->createRequest('GET', '/get-dai-go')
             ->withHeader('Authorization', 'Bearer test_test_test')
             ->withHeader('Content-Type', 'application/json')
-            ->withQueryParams(['target' => '綿毛のW']);
+            ->withQueryParams(['target' => '綿毛であるようだ']);
         $response = $app->handle($request);
 
         $payload = (string) $response->getBody();
 
-        $this->assertEquals(json_encode(['text' => 'WW']), $payload);
+        $this->assertEquals(json_encode(['text' => 'W']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => 'っぽい']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => '']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '新しい上着の色']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'AUI']), $payload);
         $this->assertEquals(200, $response->getStatusCode());
     }
 
