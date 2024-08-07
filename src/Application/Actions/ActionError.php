@@ -8,7 +8,7 @@ use JsonSerializable;
 
 /**
  * @codeCoverageIgnore
- */ 
+ */
 class ActionError implements JsonSerializable
 {
     public const BAD_REQUEST = 'BAD_REQUEST';

@@ -10,7 +10,7 @@ use Slim\Exception\HttpInternalServerErrorException;
 
 /**
  * @codeCoverageIgnore
- */ 
+ */
 class ShutdownHandler
 {
     private Request $request;

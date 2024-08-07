@@ -19,7 +19,7 @@ use Throwable;
 
 /**
  * @codeCoverageIgnore
- */ 
+ */
 class HttpErrorHandler extends SlimErrorHandler
 {
     /**

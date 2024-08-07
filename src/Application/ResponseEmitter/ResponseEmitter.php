@@ -9,7 +9,7 @@ use Slim\ResponseEmitter as SlimResponseEmitter;
 
 /**
  * @codeCoverageIgnore
- */ 
+ */
 class ResponseEmitter extends SlimResponseEmitter
 {
     /**
