@@ -6,6 +6,9 @@ namespace App\Application\Actions;
 
 use JsonSerializable;
 
+/**
+ * @codeCoverageIgnore
+ */ 
 class ActionPayload implements JsonSerializable
 {
     private int $statusCode;
