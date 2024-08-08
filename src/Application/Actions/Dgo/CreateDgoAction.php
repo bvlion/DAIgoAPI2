@@ -76,15 +76,8 @@ class CreateDgoAction extends DgoAction
         return $this->response;
     }
 
-    private function kana2alphabet(string $target): string
+    private function kana2alphabet(string $checkWord): string
     {
-        $checkWord = null;
-        if (strlen($target) === 1) {
-            $checkWord = '$target ';
-        } else {
-            $checkWord = $target;
-        }
-
         $checkWordDouble = mb_substr($checkWord, 0, 2);
         if (in_array($checkWordDouble, ['ジャ', 'ジュ', 'ジョ'], true)) {
             return 'J';
@@ -183,7 +176,7 @@ class CreateDgoAction extends DgoAction
             case 'ワ':
                 return 'W';
             default:
-                return mb_substr($checkWord, 0, 1);
+                return '';
         }
     }
 }

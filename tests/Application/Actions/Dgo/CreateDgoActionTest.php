@@ -22,6 +22,105 @@ class CreateDgoActionTest extends TestCase
 
         $this->assertEquals(json_encode(['text' => 'DD']), $payload);
         $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '絵文字が多い']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'EO']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '地下だと十分に涼しい']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'CJS']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '学校の校庭で座禅']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'GKZ']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '何か変な帽子']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'NHB']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '事前にパジャマを着て待つ']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'JPKM']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => 'レース会場にようこそ']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'RKY']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '綿毛であるようだ']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'W']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => 'っぽい']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => '']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $request = $this->createRequest('GET', '/get-dai-go')
+            ->withHeader('Authorization', 'Bearer test_test_test')
+            ->withHeader('Content-Type', 'application/json')
+            ->withQueryParams(['target' => '新しい上着の色']);
+        $response = $app->handle($request);
+
+        $payload = (string) $response->getBody();
+
+        $this->assertEquals(json_encode(['text' => 'AUI']), $payload);
+        $this->assertEquals(200, $response->getStatusCode());
     }
 
     public function testOkFromMecabWithNotExistsFile()
