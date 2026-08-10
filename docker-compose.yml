@@ -16,7 +16,7 @@ services:
             - ./logs:/var/log/apache2
 
     composer:
-        image: composer
+        build: ./docker/composer
         volumes:
           - .:/app
         working_dir: /app
