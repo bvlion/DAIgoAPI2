@@ -9,37 +9,31 @@ on:
       - src/**
       - testFile/**
       - tests/**
-      - .coveralls.yml
       - composer.*
+      - docker-compose.yml
+      - docker/composer/**
       - phpcs.xml
       - phpstan.neon.dist
       - phpunit.xml
 
-permissions:
-  pull-requests: write
+env:
+  PHP_VERSION: "8.5"
 
 jobs:
   tests:
-    name: Tests PHP ${{ matrix.php }}
+    name: Tests
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php: [8.5]
-        experimental: [false]
-        include:
-            - php: 8.5
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      - name: Set up PHP ${{ matrix.php }}
+      - name: Set up PHP ${{ env.PHP_VERSION }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
-          coverage: xdebug
-      
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+
       - name: Set up MeCab
         run: |
           sudo apt-get update
@@ -50,16 +44,16 @@ jobs:
           mecab --version
           which mecab
 
-      - name: cache vendor
+      - name: Cache vendor
         id: cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ./vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-php${{ env.PHP_VERSION }}-composer-${{ hashFiles('composer.json', 'composer.lock') }}
           restore-keys: |
-            ${{ runner.os }}-composer-
+            ${{ runner.os }}-php${{ env.PHP_VERSION }}-composer-
 
-      - name: composer install
+      - name: Composer install
         if: steps.cache.outputs.cache-hit != 'true'
         run: docker compose up composer
 
@@ -70,10 +64,4 @@ jobs:
         run: vendor/bin/phpstan
 
       - name: Tests
-        run: vendor/bin/phpunit --coverage-clover clover.xml
-
-      - name: Report
-        uses: danhunsaker/clover-reporter-action@v0.2.17-clover
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          clover-file: clover.xml
+        run: vendor/bin/phpunit
