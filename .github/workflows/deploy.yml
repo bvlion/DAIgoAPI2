@@ -29,7 +29,7 @@ jobs:
         run: scp -p -P ${{ secrets.SSH_PORT }} -r app public resources src composer.* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DIR }}/.
 
       - name: install composer
-        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && php8.1 ~/bin/composer install"
+        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && php8.5 ~/bin/composer install"
 
       - name: revert words file
         run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.SSH_DIR }} && mv words.txt resources/."
