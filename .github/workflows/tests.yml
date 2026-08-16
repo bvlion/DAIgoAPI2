@@ -2,19 +2,6 @@ name: Tests
 
 on:
   pull_request:
-    paths:
-      - .github/workflows/tests.yml
-      - app/**
-      - public/**
-      - src/**
-      - testFile/**
-      - tests/**
-      - composer.*
-      - docker-compose.yml
-      - docker/composer/**
-      - phpcs.xml
-      - phpstan.neon.dist
-      - phpunit.xml
 
 env:
   PHP_VERSION: "8.5"
