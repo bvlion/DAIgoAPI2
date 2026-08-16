@@ -1,5 +1,7 @@
 # Authenticated API
 
+All endpoints in this document require an `Authorization: Bearer <BEARER_TOKEN>` header. Requests without it, or with a token that doesn't match `BEARER_TOKEN`, return `401` or `403`.
+
 ## get /get-dai-go
 
 Create D◯I 語 
@@ -11,7 +13,8 @@ Content | Parameter | Description
 target | 努力大事 | target text
 
 ```
-http://127.0.0.1:8080/get-dai-go?target=%E5%8A%AA%E5%8A%9B%E5%A4%A7%E4%BA%8B
+curl -H "Authorization: Bearer <BEARER_TOKEN>" \
+    'http://127.0.0.1:8080/get-dai-go?target=%E5%8A%AA%E5%8A%9B%E5%A4%A7%E4%BA%8B'
 ```
 
 ### response
@@ -38,7 +41,8 @@ word | 大好物 | source word
 dai_go | DKB | save word
 
 ```
-http://127.0.0.1:8080/upsert-dai-go -d '
+curl -H "Authorization: Bearer <BEARER_TOKEN>" \
+    http://127.0.0.1:8080/upsert-dai-go -d '
     {"word": "大好物", "dai_go": "DKB"}
 '
 ```
@@ -65,7 +69,8 @@ Content | Parameter | Description
 :--|:--|:--
 
 ```
-http://127.0.0.1:8080/get-samples
+curl -H "Authorization: Bearer <BEARER_TOKEN>" \
+    http://127.0.0.1:8080/get-samples
 ```
 
 ### response
