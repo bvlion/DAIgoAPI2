@@ -122,7 +122,7 @@ html | `<!DOCTYPE HTML>` | rules
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" rel="stylesheet" type="text/css" media="all" />
-  <style>.small { font-size: 70%% !important;  color: #000000; }</style>
+  <style>.small { font-size: 70% !important;  color: #000000; }</style>
 </head>
 <body style="background-color: #FFFFFF;">
 <div class="container">
