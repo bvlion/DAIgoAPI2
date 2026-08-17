@@ -10,7 +10,7 @@ Content | Parameter | Description
 :--|:--|:--
 
 ```
-http://127.0.0.1:8080/health
+http://localhost:8000/health
 ```
 
 ### response
@@ -36,7 +36,7 @@ Content | Parameter | Description
 :--|:--|:--
 
 ```
-http://127.0.0.1:8080/terms_of_use
+http://localhost:8000/terms_of_use
 ```
 
 ### response
@@ -62,7 +62,7 @@ Content | Parameter | Description
 :--|:--|:--
 
 ```
-http://127.0.0.1:8080/privacy_policy
+http://localhost:8000/privacy_policy
 ```
 
 ### response

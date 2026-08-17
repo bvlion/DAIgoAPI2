@@ -14,7 +14,7 @@ target | 努力大事 | target text
 
 ```
 curl -H "Authorization: Bearer <BEARER_TOKEN>" \
-    'http://127.0.0.1:8080/get-dai-go?target=%E5%8A%AA%E5%8A%9B%E5%A4%A7%E4%BA%8B'
+    'http://localhost:8000/get-dai-go?target=%E5%8A%AA%E5%8A%9B%E5%A4%A7%E4%BA%8B'
 ```
 
 ### response
@@ -42,7 +42,8 @@ dai_go | DKB | save word
 
 ```
 curl -H "Authorization: Bearer <BEARER_TOKEN>" \
-    http://127.0.0.1:8080/upsert-dai-go -d '
+    -H "Content-Type: application/json" \
+    http://localhost:8000/upsert-dai-go -d '
     {"word": "大好物", "dai_go": "DKB"}
 '
 ```
@@ -70,7 +71,7 @@ Content | Parameter | Description
 
 ```
 curl -H "Authorization: Bearer <BEARER_TOKEN>" \
-    http://127.0.0.1:8080/get-samples
+    http://localhost:8000/get-samples
 ```
 
 ### response

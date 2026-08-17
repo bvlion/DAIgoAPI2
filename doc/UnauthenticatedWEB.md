@@ -10,7 +10,7 @@ Content | Parameter | Description
 :--|:--|:--
 
 ```
-http://127.0.0.1:8080/view/terms_of_use
+http://localhost:8000/view/terms_of_use
 ```
 
 ### response
@@ -52,7 +52,7 @@ Content | Parameter | Description
 :--|:--|:--
 
 ```
-http://127.0.0.1:8080/view/privacy_policy
+http://localhost:8000/view/privacy_policy
 ```
 
 ### response
@@ -96,7 +96,7 @@ textColor | #000000 | html's text color
 isPrivacyPolicy | true | if true show PrivacyPolicy else TermsOfUse
 
 ```
-http://127.0.0.1:8080/app/rules?backColor=%23FFFFFF&textColor=%23000000&isPrivacyPolicy=true
+http://localhost:8000/app/rules?backColor=%23FFFFFF&textColor=%23000000&isPrivacyPolicy=true
 ```
 
 ### response
